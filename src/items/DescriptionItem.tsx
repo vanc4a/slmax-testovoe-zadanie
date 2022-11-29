@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View} from 'react-native';
 import {Text, Divider} from '@react-native-material/core';
 import {Styles} from '../styles';
+import {Theme} from '../App';
 
 const DescriptionItem = ({
   description,
@@ -10,15 +11,22 @@ const DescriptionItem = ({
   description: string;
   date: string;
 }) => {
+  const theme = useContext(Theme);
   return (
     <View>
-      <Text style={Styles.noteDateText} variant={'subtitle2'} color={'#95a5a6'}>
+      <Text
+        style={Styles.noteDateText}
+        variant={'subtitle2'}
+        color={theme.descriptionText}>
         {date}
       </Text>
-      <Text style={Styles.discriptionText} variant={'subtitle1'}>
+      <Text
+        style={Styles.discriptionText}
+        variant={'subtitle1'}
+        color={theme.descriptionText}>
         {description}
       </Text>
-      <Divider />
+      <Divider color={theme.devider} />
     </View>
   );
 };
