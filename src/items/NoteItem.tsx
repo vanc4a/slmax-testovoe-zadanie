@@ -10,12 +10,11 @@ import DescriptionItem from './DescriptionItem';
 
 const NoteItem = ({item, removeItem}: {item: Note; removeItem: Function}) => {
   const [isActive, setActive] = useState(false);
-  const [timer, setTimer] = useState(false);
+  const [timer, setTimer] = useState(0);
   const [onDelete, setDelete] = useState(false);
 
   const deleteEvent = () => {
-    setTimer(true);
-    setTimeout(() => removeItem(item.id), 5000);
+    setTimer(setTimeout(() => removeItem(item.id), 5000));
   };
 
   return (
@@ -26,7 +25,7 @@ const NoteItem = ({item, removeItem}: {item: Note; removeItem: Function}) => {
             title={item.title}
             onPress={() => {
               setDelete(false);
-              setTimer(false);
+              setTimer(0);
               setActive(!isActive);
             }}
             trailing={
@@ -34,7 +33,7 @@ const NoteItem = ({item, removeItem}: {item: Note; removeItem: Function}) => {
                 <IconButton
                   style={Styles.removeButton}
                   onPress={() =>
-                    timer ? (setDelete(false), setTimer(false)) : deleteEvent()
+                    timer ? (setDelete(false), clearTimeout(timer), setTimer(0)) : deleteEvent()
                   }
                   icon={
                     <Delete color={'white'} name={timer ? 'ccw' : 'trash'} />
