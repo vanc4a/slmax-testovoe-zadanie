@@ -1,22 +1,14 @@
-import React, {type PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React from 'react';
+import {SafeAreaView, StatusBar} from 'react-native';
+import Header from './components/Header';
+import NotesList from './components/NotesList';
 
 const App = () => {
-
   return (
-    <SafeAreaView >
-      <StatusBar
-        barStyle={'light-content'}
-      />
-      <Text>123</Text>
+    <SafeAreaView>
+      <StatusBar barStyle={'light-content'} backgroundColor={'#006266'} />
+      <Header />
+      <NotesList />
     </SafeAreaView>
   );
 };
